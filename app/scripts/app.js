@@ -12,6 +12,7 @@
     }else{
       //hide the warning message
       $('.warning').hide();
+
       //generate and add new list item
       var newListItem = '<li>';
       newListItem+='<input class="btn btn-success left" type="checkbox">';
@@ -19,15 +20,13 @@
       newListItem+='<input type="text" class="inputItem left" id="itemName">';
       newListItem+='<button class="delete btn btn-danger right glyphicon glyphicon-remove-circle" data-toggle="tooltip" data-placement="left" title="Delete Item"></button>';
       newListItem+='<button class="add-user btn btn-success right glyphicon glyphicon-user" data-toggle="tooltip" data-placement="left" title="Assign to User"></button>';
-      newListItem+='<button class="notes btn btn-success right glyphicon glyphicon-comment data-toggle="tooltip" data-placement="left" title="Add Notes"></button>';
+      newListItem+='<button class="notes btn btn-success right glyphicon glyphicon-comment" data-toggle="collapse" data-target=".collapseExample"  data-placement="left" title="Add Notes"></button>';
       newListItem+='<button class="edit btn btn-success right glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="left" title="Rename Item"></button>';
-
       newListItem+='<div class="clear"><span class="assigned">Assigned To: </span>';
       newListItem+='<span class="assignedTo"></span></div>';
-      newListItem+='<div class="notes"></div>'
-
-
+      newListItem+='<div class="collapse"><div class="notes-panel"><textarea class="form-control" id="note" rows="3"></textarea></div></div>'
       newListItem+='</li>';
+
       //append to the item list
       $('ul#incomplete-items').append(newListItem);
       $('.inputItem').val(newItem);
@@ -80,14 +79,10 @@
   //ADD NOTES TO ITEM
   $('ul').on('click', '.notes',function(){
     //get its parent (li)
-    var parent = $(this).parent();
-    var editNote = parent.find('input[type="textarea"]').val();
-    $('#itemNotes').modal();
-    $('#itemNotes').on('hidden.bs.modal', function () {
-      $('.itemNotes').html(editNote);
-      //unbind the modal from the li
-      $('#itemNotes').unbind();
-    })
+    var parent = $(this).parent(),
+        panel = parent.find('.collapse')
+        editNote = parent.find('input[type="textarea"]').val();
+    panel.collapse('toggle');
 
   });
 
