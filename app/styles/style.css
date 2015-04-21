@@ -7,8 +7,9 @@
 
 /* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+/*  padding-top: 20px;
+  padding-bottom: 20px;*/
+  background-color: #edecec;
 }
 ul {
   list-style-type: none;
@@ -23,15 +24,29 @@ ul li {
 /* Everything gets side spacing for mobile first views */
 .header,
 .footer {
-  padding-left: 15px;
-  padding-right: 15px;
+/*  padding-left: 15px;
+  padding-right: 15px;*/
 }
 
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
+  background-color: #3f51b5;
+}
+.header span {
+  color:white;
+  padding: 10px;
+}
+.btn-primary {background-color: #3f51b5;}
+.btn-danger {background-color: #ff2670;}
+.btn-success {background-color: #87ac63;}
+.button-success.glyphicon-check {background-color: #8795c7;}
+.btn:focus, .btn:active:focus, btn.active:focus {
+  outline:1px auto -webkit-focus-ring-color;
 }
 
+/* Content */
+.content p {text-align: center;}
 /* Custom page footer */
 .footer {
   padding-top: 19px;
@@ -41,7 +56,9 @@ ul li {
 .left {float: left;}
 .right {float: right;}
 .h1 {margin:0;}
-.mt3 {margin-top: 3px;}
+.mr10 {margin-right: 10px;}
+.mt15 {margin-top: 15px;}
+.mt10 {margin-top: 10px;}
 .clear {clear:both;}
 .inline-block {
   display: inline-block;
@@ -115,6 +132,7 @@ input[type="checkbox"]  {
 .chosen-container-active .chosen-choices {
   box-shadow: 0;
 }
+
 /* Completed */
 #completed-items label {
   text-decoration: line-through;

@@ -1,7 +1,9 @@
 
-  $(document).ready(function(){
+'use strict';
 
-  //ADD ITEM
+$(document).ready(function(){
+
+//ADD ITEM
   $('button#add').on('click',function(){
     //get input's value
     var newItem = $('#new-item').val();
@@ -12,7 +14,6 @@
     }else{
       //hide the warning message
       $('.warning').hide();
-
       //generate and add new list item
       var newListItem = '<li>';
       newListItem+='<input class="btn btn-success left" type="checkbox">';
@@ -24,7 +25,7 @@
       newListItem+='<button class="edit btn btn-success right glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="left" title="Rename Item"></button>';
       newListItem+='<div class="clear"><span class="assigned">Assigned To: </span>';
       newListItem+='<span class="assignedTo"></span></div>';
-      newListItem+='<div class="collapse"><div class="notes-panel"><textarea class="form-control" id="note" rows="3"></textarea></div></div>'
+      newListItem+='<div class="collapse"><div class="notes-panel"><textarea class="form-control" id="note" rows="3"></textarea></div></div>';
       newListItem+='</li>';
 
       //append to the item list
@@ -32,19 +33,19 @@
       $('.inputItem').val(newItem);
       //empty input value
       $('#new-item').val('');
-    };//end else statement
+    }//end else statement
     countItem();
-  });//end button click function
+  });
 
- //EDIT ITEM
+//EDIT ITEM
   //user clicks on edit button
   $('ul').on('click','.edit',function(){
-    //get its parent (li)
+    //get its parent li
     var parent = $(this).parent();
     //check its parent  class
     if (!parent.hasClass('beingEdited')) {
       parent.addClass('beingEdited');
-      $('button.edit').removeClass('glyphicon-edit')
+      $('button.edit').removeClass('glyphicon-edit');
       $('button.edit').addClass('glyphicon-check');
     }else if (parent.hasClass('beingEdited')) {
       //grab the value entered in the input and set as the label
@@ -55,38 +56,35 @@
       parent.removeClass('beingEdited');
       $('button.edit').removeClass('glyphicon-check');
       $('button.edit').addClass('glyphicon-edit');
-    };
+    }
   });
 
-  //ADD USER TO ITEM
+//ADD USER TO ITEM
   //user clicks on add user button
   $('ul').on('click', '.add-user',function(){
-    //get its parent (li)
+    //get its parent li
     var parent = $(this).parent(),
         editItem,
         editLabel = parent.find('span.assignedTo');
     $('#editItem').modal();
-    $('#selectUsers').chosen({width: "95%",disable_search_threshold: 10});
+    $('#selectUsers').chosen({width: '95%'});
     $('#editItem').on('hidden.bs.modal', function () {
       editItem = $('#selectUsers').val();
-      console.log('editItem:'+editItem);
       editLabel.html(editItem);
       //unbind the modal from the li
       $('#editItem').unbind();
-    })
+    });
   });
 
-  //ADD NOTES TO ITEM
+//ADD NOTES TO ITEM
   $('ul').on('click', '.notes',function(){
     //get its parent (li)
     var parent = $(this).parent(),
-        panel = parent.find('.collapse')
-        editNote = parent.find('input[type="textarea"]').val();
-    panel.collapse('toggle');
-
+        panel = parent.find('.collapse');
+        panel.collapse('toggle');
   });
 
-  //COMPLETE ITEM
+//COMPLETE ITEM
   $('ul').on('change','input[type="checkbox"]', function(){
     //get grandparent
     var grandparent = $(this).parent().parent();
@@ -103,38 +101,37 @@
     countItem();
   });
 
-  //DELETE ITEM
+//DELETE ITEM
   $('ul').on('click','.delete',function(){
     $(this).parent().remove();
     countItem();
   });//end delete function
 
-  //SHARE LIST
+//SHARE LIST
+  $('.select-share').chosen({width:'100%'});
   $('.header').on('click', '.shareList', function(){
     //get its parent (li)
-    var parent = $(this).parent(),
-        shared = "",
+    // var parent = $(this).parent(),
+    var shared = '',
         editItem,
         editLabel = $('.sharedWith');
     $('#shareList').modal();
-    $('.selectShare').chosen({width: "95%",disable_search_threshold: 5});
     $('#shareList').on('hidden.bs.modal', function () {
-      editItem = $('.selectShare').val();
+  // Modify select input with Chosen.js
+      editItem = $('.select-share').val();
       $.each(editItem, function(index,value){
-        shared += value + " ";
+        shared += value + ' ';
       });
       editLabel.html(shared);
       //unbind the modal from the li
       $('#shareList').unbind();
-    })
+    });
   });
-
-  //ITEM COUNTER
+$('.chosen-select').chosen();
+//ITEM COUNTER
   function countItem(){
     var remainItem = $('#incomplete-items li').length;
     $('#counter').hide().fadeIn(300).html(remainItem);
-  };
+  }
   countItem();
-
-
 });
