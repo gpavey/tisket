@@ -1,0 +1,143 @@
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+ul {
+  list-style-type: none;
+  -webkit-padding-start: 0px;
+  -webkit-margin-before: 0px;
+  margin-left: 0px;
+}
+ul li {
+  padding:10px;
+}
+
+/* Everything gets side spacing for mobile first views */
+.header,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+.left {float: left;}
+.right {float: right;}
+.h1 {margin:0;}
+.mt3 {margin-top: 3px;}
+.clear {clear:both;}
+.inline-block {
+  display: inline-block;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+.btn {
+  border-radius: 0;
+  padding:4px 8px;
+}
+button.edit,
+button.notes,
+button.add-user {
+  margin-right: 10px;
+}
+.itemName {
+  font-size: 24px;
+}
+
+
+label{text-transform: capitalize;}
+
+input[type="text"] {
+  margin: 0;
+  font-size: 18px;
+  line-height: 18px;
+  height: 18px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 0;
+  font-family: Lato, sans-serif;
+  color: #888;
+}
+input[type="text"]:focus {
+  color: #333;
+}
+
+/* Edit Task */
+ul li input[type=text],
+ul li.beingEdited input[type=text] {
+  height:31px;
+  border-radius: 0;
+  font-size: 24px;
+  display: inline-block;
+  max-width: calc(100% - 208px);
+}
+ul li input[type=text] {
+  display:none;
+}
+ul li.beingEdited label {
+  display:none;
+
+}
+input[type="checkbox"]  {
+  zoom:2.8;
+  margin: 0;
+}
+
+#completed-items li,
+#incomplete-items li {
+  margin-bottom: 5px;
+  background: #fefefe;
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  transition: all 250ms;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.chosen-container-active .chosen-choices {
+  box-shadow: 0;
+}
+/* Completed */
+#completed-items label {
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+
+
+}
