@@ -5,37 +5,27 @@
   padding: 0.2em 0;
 }
 
-/* Space out content a bit */
-body {
-/*  padding-top: 20px;
-  padding-bottom: 20px;*/
-  background-color: #edecec;
-}
+/* Basic Styling */
+body {background-color: #edecec; padding:0; margin:0;}
 ul {
   list-style-type: none;
-  -webkit-padding-start: 0px;
-  -webkit-margin-before: 0px;
-  margin-left: 0px;
+  margin: 0;
+  padding: 0;
 }
-ul li {
-  padding:10px;
-}
+ul li {padding:10px;}
+.left {float: left;}
+.right {float: right;}
+.h1 {margin:0;}
+.mr10 {margin-right: 10px;}
+.mt15 {margin-top: 15px;}
+.mt10 {margin-top: 10px;}
+.clear {clear:both;}
+.inline-block {display: inline-block;}
 
-/* Everything gets side spacing for mobile first views */
-.header,
-.footer {
-/*  padding-left: 15px;
-  padding-right: 15px;*/
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  background-color: #3f51b5;
-}
-.header span {
-  color:white;
-  padding: 10px;
+/* Buttons Buttons Buttons */
+.btn {
+  border-radius: 0;
+  padding:4px 8px;
 }
 .btn-primary {background-color: #3f51b5;}
 .btn-danger {background-color: #ff2670;}
@@ -44,51 +34,19 @@ ul li {
 .btn:focus, .btn:active:focus, btn.active:focus {
   outline:1px auto -webkit-focus-ring-color;
 }
-
-/* Content */
-.content p {text-align: center;}
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-.left {float: left;}
-.right {float: right;}
-.h1 {margin:0;}
-.mr10 {margin-right: 10px;}
-.mt15 {margin-top: 15px;}
-.mt10 {margin-top: 10px;}
-.clear {clear:both;}
-.inline-block {
-  display: inline-block;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-.btn {
-  border-radius: 0;
-  padding:4px 8px;
-}
 button.edit,
 button.notes,
 button.add-user {
   margin-right: 10px;
 }
-.itemName {
-  font-size: 24px;
-}
 
-
-label{text-transform: capitalize;}
-
+/* Inputs and Labels */
 input[type="text"] {
   margin: 0;
+  padding-left: 5px;
   font-size: 18px;
   line-height: 18px;
-  height: 18px;
-  padding: 10px;
+  height: 32px;
   border: 1px solid #ddd;
   background: #fff;
   border-radius: 0;
@@ -97,6 +55,40 @@ input[type="text"] {
 }
 input[type="text"]:focus {
   color: #333;
+}
+input[type="checkbox"]  {
+  -moz-transform: scale(2.4);
+  -webkit-transform: scale(2.4);
+  -moz-margin-end:30px;
+  -moz-margin-start:10px;
+  margin:10px;
+}
+label{text-transform: capitalize;}
+
+/* Chosen.js */
+.chosen-container-active .chosen-choices {
+  box-shadow: 0;
+}
+.chosen-container-multi .chosen-choices li {
+  height:25px;
+}
+
+/* Content */
+.content p {
+  text-align: center;
+  font-size: 18px;
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+.itemName {font-size: 24px;}
+.notes-panel{
+  min-height: 20px;
+  background-color: #F5F5F5;
+  border: 1px solid #E3E3E3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 /* Edit Task */
@@ -113,13 +105,9 @@ ul li input[type=text] {
 }
 ul li.beingEdited label {
   display:none;
-
-}
-input[type="checkbox"]  {
-  zoom:2.8;
-  margin: 0;
 }
 
+/* Completed Items */
 #completed-items li,
 #incomplete-items li {
   margin-bottom: 5px;
@@ -129,36 +117,33 @@ input[type="checkbox"]  {
   transition: all 250ms;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
-.chosen-container-active .chosen-choices {
-  box-shadow: 0;
-}
-
-/* Completed */
 #completed-items label {
   text-decoration: line-through;
   color: #888;
 }
 
-.notes-panel{
-  min-height: 20px;
-  background-color: #F5F5F5;
-  border: 1px solid #E3E3E3;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+/* Page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #3f51b5;
+}
+.header span {
+  color:white;
+  padding: 10px;
+}
+
+/* Page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  .container {
+  .container, .container-flex {
     max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
+    margin:0 auto;
   }
 
   /* Space out the masthead */
