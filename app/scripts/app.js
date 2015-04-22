@@ -2,6 +2,12 @@
 'use strict';
 
 $(document).ready(function(){
+// If the user hits enter in the text input, click the button
+  $('#new-item').keydown(function(event){
+    if(event.keyCode === 13){
+      $('button#add').click();
+    }
+  });
 
 //ADD ITEM
   $('button#add').on('click',function(){
@@ -21,7 +27,7 @@ $(document).ready(function(){
       newListItem+='<input type="text" class="inputItem left" id="itemName">';
       newListItem+='<button class="delete btn btn-danger right glyphicon glyphicon-remove-circle" data-toggle="tooltip" data-placement="left" title="Delete Item"></button>';
       newListItem+='<button class="add-user btn btn-success right glyphicon glyphicon-user" data-toggle="tooltip" data-placement="left" title="Assign to User"></button>';
-      newListItem+='<button class="notes btn btn-success right glyphicon glyphicon-comment" data-toggle="collapse" data-target=".collapseExample"  data-placement="left" title="Add Notes"></button>';
+      newListItem+='<button class="notes btn btn-success right glyphicon glyphicon-comment" data-toggle="collapse" data-placement="left" title="Add Notes"></button>';
       newListItem+='<button class="edit btn btn-success right glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="left" title="Rename Item"></button>';
       newListItem+='<div class="clear"><span class="assigned">Assigned To: </span>';
       newListItem+='<span class="assignedTo"></span></div>';
@@ -29,7 +35,7 @@ $(document).ready(function(){
       newListItem+='</li>';
 
       //append to the item list
-      $('ul#incomplete-items').append(newListItem);
+      $('ul#incomplete-items').append(newListItem).hide().fadeIn(300);
       $('.inputItem').val(newItem);
       //empty input value
       $('#new-item').val('');
@@ -59,6 +65,24 @@ $(document).ready(function(){
     }
   });
 
+  //EDIT TTILE
+  //user clicks on edit button
+  $('ul').on('click','.title',function(){
+    //get its parent li
+    var parent = $(this).parent();
+    //check its parent  class
+    if (!parent.hasClass('beingEdited')) {
+      parent.addClass('beingEdited');
+    }else if (parent.hasClass('beingEdited')) {
+      //grab the value entered in the input and set as the label
+      var editItem = parent.find('input[type="text"]').val();
+      var editLabel = parent.find('label');
+      editLabel.html(editItem);
+      //remove edit class
+      parent.removeClass('beingEdited');
+    }
+  });
+
 //ADD USER TO ITEM
   //user clicks on add user button
   $('ul').on('click', '.add-user',function(){
@@ -84,6 +108,18 @@ $(document).ready(function(){
         panel.collapse('toggle');
   });
 
+//SHOW COMPETED
+  $('.show-checked').on('click',function(){
+    if ($(this).hasClass('glyphicon-chevron-right')){
+      $(this).removeClass('glyphicon-chevron-right');
+      $(this).addClass('glyphicon-chevron-down');
+    }else{
+      $(this).removeClass('glyphicon-chevron-down');
+      $(this).addClass('glyphicon-chevron-right');
+    }
+    $('#completed-items').collapse('toggle');
+  });
+
 //COMPLETE ITEM
   $('ul').on('change','input[type="checkbox"]', function(){
     //get grandparent
@@ -96,7 +132,7 @@ $(document).ready(function(){
       $('#completed-items').append(parent);
     }else if(grandparent.is('#completed-items')){
       parent.remove();
-      $('#incomplete-items').append(parent);
+      $('#incomplete-items').append(parent).hide().fadeIn(300);
     }
     countItem();
   });
@@ -109,7 +145,7 @@ $(document).ready(function(){
 
 //SHARE LIST
   $('.select-share').chosen({width:'100%'});
-  $('.header').on('click', '.shareList', function(){
+  $('.footer').on('click', '.shareList', function(){
     //get its parent (li)
     // var parent = $(this).parent(),
     var shared = '',
@@ -128,6 +164,32 @@ $(document).ready(function(){
     });
   });
 $('.chosen-select').chosen();
+
+//NEW LIST
+  $('.footer').on('click','.newList',function(){
+    location.reload(true);
+  });
+
+//EMAIL LIST
+  $('.mail-select').chosen({width:'100%'});
+  $('.footer').on('click', '.mailList', function(){
+    var shared = '',
+        editItem,
+        editLabel = $('.sharedWith');
+    $('#mailList').modal();
+    $('#mailList').on('hidden.bs.modal', function () {
+  // Modify select input with Chosen.js
+      editItem = $('.mail-select').val();
+      $.each(editItem, function(index,value){
+        shared += value + ' ';
+      });
+      editLabel.html(shared);
+      //unbind the modal from the li
+      $('#mailList').unbind();
+    });
+  });
+
+
 //ITEM COUNTER
   function countItem(){
     var remainItem = $('#incomplete-items li').length;
