@@ -29,6 +29,18 @@ ul li {padding:10px;}
 .clear {clear:both;}
 .inline-block {display: inline-block;}
 
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover
+{
+  outline:0px !important;
+}
 /* Buttons Buttons Buttons */
 .btn {
   border-radius: 0;
@@ -87,8 +99,9 @@ label{text-transform: capitalize;}
 }
 
 /* Content */
-.title{
-
+input{
+  border: none;
+  background: none;
 }
 .title input[type="text"],
 .item input[type="text"]{
@@ -101,6 +114,9 @@ label{text-transform: capitalize;}
 .item {
   margin-left: 10px;
 }
+.content p span {
+  vertical-align: middle;
+}
 .content p {
   font-size: 18px;
 }
@@ -109,6 +125,7 @@ label{text-transform: capitalize;}
   background: none;
   color: #87ac63;
   top: 5px;
+  vertical-align: top;
 }
 .container-narrow > hr {
   margin: 30px 0;
