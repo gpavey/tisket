@@ -24,29 +24,37 @@
     <![endif]-->
 
 
-    <div class="container-flex">
-      <div class="header clearfix">
+    <div class="container-flex header navbar navbar-fixed-top">
+      <div class="container">
         <span class="text-muted left h1">Basket</span>
-        <button class="btn btn-primary shareList glyphicon glyphicon-globe right mt15 mr10"> Share</button>
       </div>
+    </div>
 
     <div class="container mt10 content">
       <div>
-        <span class="text-left h4">List Shared With: </span>
-        <span class="text-center sharedWith h4"></span>
-        <div class="mt10">
-        <p>
-          <label for="new-item">Add Item</label>
-          <input id="new-item" type="text">
-          <button class="btn btn-success" id="add">Add</button>
+        <div class="h4 ">
+          <span class="left">List Shared With:
+            <span class="sharedWith strong"></span>
+          </span>
+          <span class="right top">Item count
+            <span class="badge" id="counter"></span>
+          </span>
+        </div>
+        <p class="clear line title">
+          <label class="titleName" for="titleName"></label>
+          <input type="text" class="inputTitle" id="titleName" placeholder="Title">
+        </p>
+
+        <ul id="incomplete-items">
+        </ul>
+        <p class="clear item">
+
+          <button class="glyphicon glyphicon-plus"id="add"></button>
+          <label for="new-item"></label>
+          <input id="new-item" type="text" placeholder="New Item">
           <div class="warning"></div>
           <div class="success"></div>
         </p>
-
-        <h3>Grocery Item
-        <span class="badge" id="counter"></span></h3>
-        <ul id="incomplete-items">
-        </ul>
 
         <div class="modal fade" id="editItem" tabindex="-1" role="dialog" aria-labelledby="editItem" aria-hidden="true">
           <div class="modal-dialog">
@@ -94,19 +102,54 @@
           </div>
         </div>
 
-        <h3>Completed</h3>
-        <ul id="completed-items">
-        </ul>
+        <div class="modal fade" id="mailList" tabindex="-1" role="dialog" aria-labelledby="mailList" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="mailLabel">Email List</h4>
+              </div>
+              <div class="modal-body">
+                <select data-placeholder="Select a User.." class="mail-select" id="selectUsers">
+                  <option value=""></option>
+                  <option value="Cindy">Cindy</option>
+                  <option value="Geoff">Geoff</option>
+                  <option value="Brice">Brice</option>
+                  <option value="Lisa">Lisa</option>
+                </select>
+                <p>OR</p>
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="line"><button class="glyphicon glyphicon-chevron-right show-checked"></button>
+          <span >Completed</span></p>
+          <ul class="collapse" id="completed-items">
+          </ul>
+
       </div>
-
-
     </div>
 
-
-      <div class="footer">
+  <div class="navbar navbar-fixed-bottom footer container-flex">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-4 text-center">
+          <button class="btn btn-primary shareList glyphicon glyphicon-globe mt-10" data-toggle="tooltip" title="Share List"> Share</button>
+        </div>
+        <div class="col-xs-4 text-center">
+          <button class="btn btn-primary glyphicon newList glyphicon-plus-sign mt-10" data-toggle="tooltip" title="New List"> New</button>
+        </div>
+        <div class="col-xs-4 text-center">
+          <button class="btn btn-primary mailList glyphicon glyphicon-send mt-10" data-toggle="tooltip" title="Email List"> Email</button>
+        </div>
       </div>
-
     </div>
+  </div>
 
 
     <!-- build:js(.) scripts/vendor.js -->
